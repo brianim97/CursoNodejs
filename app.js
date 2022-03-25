@@ -1,22 +1,15 @@
 const express = require('express')
+require('dotenv').config()
 const app = express()
-const port = 3001
+const port = process.env.PORT
 
+app.use('/api/users',require('./routes/users'))
 
-app.get('/',(req,res)=>{
-  res.json({msg:'home'})
+app.get('*',(req,res)=>{
+  res.json({
+    msg:'File not found'
+  })
 })
-
-app.get('/account',(req,res)=>{
-  res.json({msg:'account'})
-})
-
-app.get('/users',(req,res)=>{
-  res.json({msg:'users'})
-})
-
-
-
 
 app.listen(port, () => {
   console.log(`Mi app se ejecuta en http://localhost:${port}`)
